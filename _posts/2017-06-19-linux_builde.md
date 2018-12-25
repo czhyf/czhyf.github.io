@@ -55,6 +55,119 @@ tags: linux
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/29.jpg)
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/30.jpg)
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/linux_kaixin.jpg)
+#### 首先关闭防火墙
+```css
+service iptables stop
+cdkconfig iptables off
+```
+
+#### 配置hosts文件
+```css
+vi /etc/hosts
+```
+```css
+192.168.1.23 hadoop01
+192.168.1.24 hadoop02
+192.168.1.25 hadoop03
+192.168.1.26 hadoop04
+192.168.1.27 hadoop05
+192.168.1.28 hadoop06
+192.168.1.29 hadoop07
+```
+#### 网络配置
+```css
+vi /etc/sysconfig/network-scripts/ifcfg-em1
+```
+![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/a6a8ccb5bf3119c47ffdb03fd677e3f.png)
+#### 配置ssh
+```css
+//所有的节点执行
+ssh localhost
+ssh ~/.ssh
+//主节点执行
+ssh ssh-keygen -t rsa 
+//连敲回车，就会生成两个文件id_rsa（私钥）、id_rsa.pub（公钥）
+ssh-copy-id -i id_rsa.pub root@hadoop01
+ssh-copy-id -i id_rsa.pub root@hadoop02
+ssh-copy-id -i id_rsa.pub root@hadoop03
+ssh-copy-id -i id_rsa.pub root@hadoop04
+ssh-copy-id -i id_rsa.pub root@hadoop05
+ssh-copy-id -i id_rsa.pub root@hadoop06
+ssh-copy-id -i id_rsa.pub root@hadoop07
+```
+#### 安装java
+1，下载rpm
+```css
+https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.rpm
+```
+2，创建文件夹 并将rpm文件传到java文件里
+```css
+mkdir software
+mkdir java
+```
+3，使用rpm安装
+```css
+rpm -ivh jdk-8u191-linux-x64.rpm
+```
+4，配置一个全局的java变量
+```css
+echo "JAVA_HOME=/usr/java/latest/" >> /etc/environment
+```
+#### 关闭SELinux（重启生效）（所有节点）
+```css
+vi /etc/selinux/config
+```
+![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/linux_se.png)
+
+#### 设置用户最大可打开文件数，进程数，内存占用
+```css
+vi /etc/security/limits.conf
+```
+再最后加上
+```css
+* soft nofile 32728
+* hard nofile 1024999
+* soft nproc 65535
+* hard nproc unlimited
+* soft memlock unlimited
+* hard memlock unlimited
+```
+#### 配置NTP时间同步服务
+##### 安装ntp
+```css
+yum install -y ntp
+```
+###### 配置NTP
+```css
+#所有节点都操作
+cp /etc/ntp.conf /etc/ntp.conf.backup
+```
+```css
+#主节点
+restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
+server 127.127.1.0
+fudge 127.127.1.0 stratum 10
+#从节点
+server master（此处为master节点的hostname）
+```
+```css
+#开机启动
+chkconfig ntpd on
+#启动ntp
+service ntpd start
+```
+#### 重启所有的机器，重启完之后进行接下来的操作
+##### 设置swap空间
+```css
+echo "vm.swappiness = 0" >> /etc/sysctl.conf
+```
+##### 关闭大页面压缩
+```css
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+echo never > /sys/kernel/mm/transparent_hugepage/defrag
+```
+
+
 
 
 
