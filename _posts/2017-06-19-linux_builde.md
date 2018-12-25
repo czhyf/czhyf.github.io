@@ -5,34 +5,34 @@ date: 2017-06-19
 author: 男孩
 tags: linux
 ---
-##linux系统的安装
+## linux系统的安装
 公司之前是原生态的hadoop，但是自己写监控页面又觉得力不从心，但是CDH 感觉坑挺多，主要是内部结构源码不了解，不过还是搭建了CDH版本。在搭建的时候使用了戴尔的7台测试服务器来进行试验：
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/0.jpg)
 ### 接下来就开始安装系统
 #### 第一步：开机 。。这里用一台机器做试验
-#####1:机子有点脏。。
+##### 1:机子有点脏。。
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/1.jpg)
-####2:按F11 进入bios。然后选择Hard-->再选择usb
+#### 2:按F11 进入bios。然后选择Hard-->再选择usb
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/2.jpg)
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/3.jpg)
-####3:接下来就进入安装的阶段了,按照图片的顺序
+#### 3:接下来就进入安装的阶段了,按照图片的顺序
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/5.jpg)
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/6.jpg)
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/7.jpg)
-####4:选择启动的方式，hard启动
+#### 4:选择启动的方式，hard启动
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/8.jpg)
-####4:选择磁盘，这块需要注意，有时候不知道哪一个，可以随便试
+#### 5:选择磁盘，这块需要注意，有时候不知道哪一个，可以随便试
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/9.jpg)
 如果出现了以下错误，可以继续换一个试，直到进去
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/10.jpg)
-####5:已经进入了操作系统，开始安装,按照步骤
+#### 6:已经进入了操作系统，开始安装,按照步骤
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/11.jpg)
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/12.jpg)
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/13.jpg)
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/14.jpg)
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/15.jpg)
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/16.jpg)
-####6:到这一步选择自定义分区，让我们更加清楚自己的情况，我这块有两块的磁盘的并没有做阵列。所以只使用一块磁盘做系统
+#### 7:到这一步选择自定义分区，让我们更加清楚自己的情况，我这块有两块的磁盘的并没有做阵列。所以只使用一块磁盘做系统
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/17.jpg)
 这块的时候，sdc是优盘，不要进行删除，其他的则选中进行删除
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/linux_buidler/18.jpg)
