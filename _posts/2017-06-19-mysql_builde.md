@@ -7,31 +7,31 @@ tags: mysql
 ---
 ### Mysql二进制的安装
 #### 第一步查看是否安装mysql
-```
+```css
 rpm -qa|grep -i mysql
 ```
 可能会出现一个或者多个。不管出现多少个，都全部干掉
-```
+```css
 [root@localhost:~]mysql-libs-5.1.71-1.el6.x86_64
 ```
 卸载命令：rpm –ev {包名}
-```
+```css
 rpm -ev mysql-libs-5.1.71-1.el6.x86_64
 ```
 删除完之后，继续查找是否还有mysql的目录存在
-```
+```css
 find / -name mysql
 ```
 找到之后，然后删除就可以了，利用 
-```
+```css
 rm -rf 文件路径
 ```
 最后再通过命令查一遍是否还有留下来的
-```
+```css
 rpm -qa|grep -i mysql
 ```
 ##### 如果是centos7，则会默认自带安装一个mysql的分支，mariadb，必须先卸载此分支产品
-```
+```css
 rpm -qa | grep mariadb
 #查出之后利用rpm进行删除
 rpm -e --nodeps 查找出来的文件名
@@ -39,18 +39,18 @@ rpm -e --nodeps 查找出来的文件名
 #### 第二步 开始安装mysql
 #####   yum install -y libaio &nbsp;(已经安装的可以略)
 0,创建所需要的文件夹
-```
+```css
 mkdir /root/software 
 #创建一个文件夹
 cd/root/software 
 #进入文件夹
 ```
 1,安装wget(已安装略)
-```
+```css
 yum install -y wget
 ```
 2,下载mysql的安装包，下载通用版即可。（https://dev.mysql.com/downloads/mysql/5.7.html#downloads）
-```
+```css
 #通过wget下载，当然也可以手动下载，然后上传到服务器上
 wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.24-linux-glibc2.12-x86_64.tar.gz
 #解压到当前目录
@@ -59,20 +59,20 @@ tar -zxvf  mysql-5.7.24-linux-glibc2.12-x86_64.tar.gz
 mv mysql-5.7.24-linux-glibc2.12-x86_64 /usr/local/mysql
 ```
 3,开始对mysql进行配置
-```
+```css
 #进入到mysql的目录下
 cd /usr/local/mysql
 # 创建data文件夹，用来存储mysql的data
 mkdir data
 ```
 4,查看用户和组并创建
-```
+```css
 cat /etc/group | grep mysql
 cat /etc/passwd |grep mysql
 #如果存在，则删除掉
 userdel -r mysql #会删除其对应的组和用户。
 ```
-```
+```css
 #创建用户组
 groupadd mysql
 useradd -r -g mysql mysql
@@ -81,10 +81,10 @@ chown -R mysql:mysql /usr/local/mysql
 ```
 5,开始创建mysql所需的目录和对mysql的配置
 &nbsp;&nbsp;5.1 配置mysql.cnf
-```
+```css
 vim /etc/mysql.cnf
 ```
-```
+```css
 [mysqld]
 basedir=/usr/local/mysql
 datadir=/usr/local/mysql/data
@@ -114,14 +114,14 @@ collation-server=utf8_unicode_ci
 skip-character-set-client-handshake
 ```
 &nbsp;&nbsp;5.2  创建文件 /tmp/mysql.sock：设置用户组及用户，授权
-```
+```css
 cd /tmp
 touch mysql.sock
 chown mysql:mysql mysql.sock
 chmod 755 mysql.sock
 ```
 &nbsp;&nbsp;5.3 创建文件/tmp/mysqld/mysqld.pid
-```
+```css
 cd /tmp
 mkdir mysqld
 cd mysqld
@@ -131,15 +131,15 @@ chown -R mysql:mysql mysqld
 cd mysqld
 chmod 755 mysqld.pid
 ```
-&nbsp;&nbsp;5.3 创建文件/var/log/mysqld.log
-```
+&nbsp;&nbsp;5.4 创建文件/var/log/mysqld.log
+```css
 touch /var/log/mysqld.log
 chown -R mysql:mysql /var/log
 cd log
 chmod 755 mysqld.log
 ```
 6,安装和初始化（比较重要，经常凉凉）
-```
+```css
 #进入bin目录
 cd /usr/local/mysql/bin/
 #初始化数据库
@@ -152,7 +152,7 @@ ps -ef | grep mysql
 cat /var/log/mysqld.log
 ```
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/mysql/mysql_password.png)
-```
+```css
 #进入bin目录
 cd /usr/local/mysql/bin
 #登录mysql,输入默认密码
@@ -170,7 +170,7 @@ service mysql stop
 service mysql start
 ```
 #### 第三步 开机设置等操作
-```
+```css
 #先拷贝
 cp -a /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql
 #查看是否拷贝成功
