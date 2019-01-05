@@ -10,7 +10,7 @@ tags: spark
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/stage.png)
 ##### 总体架构 就是 js 将用户访问日志不断采集到nginx，经由脚本切割日志文件，然后由flume采集到hdfs，再经过spark任务分析，将结果存储到mysql，然后由echarts框架将数据展示到前端
 ##### 实现JS埋点以及到nginx的数据采集
-<iframe width="560" height="315" src="http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/JS.mp4" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="560" src="http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/JS.mp4" frameborder="0" allowfullscreen></iframe>
 ###### [安装nginx](http://www.wordboy.cn/2017/11/01/Nginx_Builde.html)
 
 ##### 配置nginx文件,下载[nginx.conf](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/nginx.conf)
@@ -30,7 +30,7 @@ vim nginx.conf
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/log_up.PNG)
 
 ##### 因为找不见大量的人访问，所以需要自己写一个模拟访问器，
-<iframe width="560" height="315" src="http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/moni.mp4" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="560" src="http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/moni.mp4" frameborder="0" allowfullscreen></iframe>
 ##### 采用pythn代码,模拟点击
 ```css
 from  selenium import webdriver
