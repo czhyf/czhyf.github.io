@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: 'JS埋点_Spark分析_echarts展示'
+title: 'JS埋点_Spark分析_echarts展示（上）'
 date: 2018-01-13
 author: 男孩
 tags: spark
@@ -28,5 +28,39 @@ vim nginx.conf
 ##### 将log.gif 放入到html中
 [log.gif下载](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/log.gif)
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/log_up.PNG)
+##### 因为找不见大量的人访问，所以需要自己写一个模拟访问器，
+![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/moni.mp4)
+##### 采用pythn代码,模拟点击
+```css
+from  selenium import webdriver
+import random
 
+class Start(object):
+    def __init__(self):
+        self.driver="/Users/zhancao/JOB/project/pythonProject/Simple/pyProject/moni/chromedriver"
+    def start_go(self):
+        self.click=[]
+        #进行存储值
+        self.click.append( "http://localhost:8080/ExceptionTracker_war/html/JAVA_SE.html")
+        self.click.append( "http://localhost:8080/ExceptionTracker_war/html/JAVA_EE.html")
+        self.click.append("http://localhost:8080/ExceptionTracker_war/html/BIG_DATA.html")
+        self.click.append("http://localhost:8080/ExceptionTracker_war/html/C.html")
+        self.click.append("http://localhost:8080/ExceptionTracker_war/html/C++.html")
+        self.click.append("http://localhost:8080/ExceptionTracker_war/html/Python.html")
+        self.click.append("http://localhost:8080/ExceptionTracker_war/")
+        driver = webdriver.Chrome(self.driver)
+        index=0
+        while(True):
+            random_i=int(random.random()*len(self.click))
+            url=self.click[random_i]
+            driver.get(url)
+            print("======"+str(index)+"======="+url)
+            index+=1
+
+if __name__ == '__main__':
+    start = Start()
+    start.start_go()
+
+
+```
 ###### [查看Js代码](https://github.com/czhyf/ExceptionTracker)
