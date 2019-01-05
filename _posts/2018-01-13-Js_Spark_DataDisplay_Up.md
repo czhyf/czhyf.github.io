@@ -28,8 +28,9 @@ vim nginx.conf
 ##### 将log.gif 放入到html中
 [log.gif下载](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/log.gif)
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/log_up.PNG)
+
 ##### 因为找不见大量的人访问，所以需要自己写一个模拟访问器，
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/moni.mp4)
+<iframe width="560" height="315" src="http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/moni.mp4" frameborder="0" allowfullscreen></iframe>
 ##### 采用pythn代码,模拟点击
 ```css
 from  selenium import webdriver
