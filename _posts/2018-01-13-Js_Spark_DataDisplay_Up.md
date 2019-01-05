@@ -10,7 +10,7 @@ tags: spark
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/stage.png)
 ##### 实现JS埋点以及到nginx的数据采集
 <iframe width="560" height="315" src="http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/JS.mp4" frameborder="0" allowfullscreen></iframe>
-###### 安装nginx
+###### [安装nginx](http://www.wordboy.cn/2017/11/01/Nginx_Builde.html)
 
 ##### 配置nginx文件,下载[nginx.conf](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/nginx.conf)
 ```css
