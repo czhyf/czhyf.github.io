@@ -165,9 +165,7 @@ grant all privileges on *.* to 'root'@'%' identified by '123456';
 flush privileges;
 #然后退出mysql
 quit;
-#重新启动mysql服务
-service mysql stop
-service mysql start
+
 ```
 #### 第三步 开机设置等操作
 ```css
@@ -179,6 +177,9 @@ cd /etc/init.d/mysql
 chkconfig --add mysql
 #查看是否在服务中
 chkconfig --list mysql
+#重新启动mysql服务
+service mysql stop
+service mysql start
 至此就已经安装成功了.
 ```
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/mysql/mysql_end.jpg)
