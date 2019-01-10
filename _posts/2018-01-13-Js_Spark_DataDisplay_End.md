@@ -1,7 +1,7 @@
 ﻿---
 layout: post
 title: 'JS埋点_Spark分析_echarts展示（下）'
-date: 2018-01-13
+date: 2018-01-15
 author: 男孩
 tags: spark
 ---
@@ -57,4 +57,121 @@ cd /root/software/kafka/bin
 ./kafka-console-consumer.sh --topic js_log --bootstrap-server hadoop04:9092 --from-beginning
 ```
 视频：
+<iframe width="560" height="400" src="http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/flume_caiji.mp4" frameborder="0" allowfullscreen></iframe>
+##### 既然flume已经采集到kafka了 那么接下来就开始编写sparkStreaming程序来消费数据
+```css
+//首先idea创建一个maven程序，然后导入依赖
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>0.10.0.1</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming_2.11</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+```
+##### 我们要写一个url解码的java类。因为收集到的信息都是经过url编码的、SCALA中是可以直接调用java代码的。
+```css
+package com.log;
+
+import java.io.UnsupportedEncodingException;
+
+public class UrlUtil {
+    private final static String ENCODE = "GBK";
+    /**
+     * URL 解码
+     */
+    public static String getURLDecoderString(String str) {
+        String result = "";
+        if (null == str) {
+            return "";
+        }
+        try {
+            result = java.net.URLDecoder.decode(str, ENCODE);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    /**
+     * URL 转码
+     */
+    public static String getURLEncoderString(String str) {
+        String result = "";
+        if (null == str) {
+            return "";
+        }
+        try {
+            result = java.net.URLEncoder.encode(str, ENCODE);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+}
+```
+##### 开始写sparkStreaming+kafka 的程序（很简单）
+```css
+
+package com.log
+
+import org.apache.kafka.common.serialization.StringDeserializer
+import org.apache.log4j.{Level, Logger}
+import org.apache.spark.streaming.{Seconds, StreamingContext}
+import org.apache.spark.{SparkConf}
+import org.apache.spark.streaming.kafka010.{ConsumerStrategies, KafkaUtils, LocationStrategies}
+
+/**
+  * 业务需求
+  * 1，需要知道 哪个url最受访问者的喜欢
+  * 2，统计pv
+  * 3，统计uv
+  */
+object KafKaFlume {
+  Logger.getLogger("org").setLevel(Level.WARN)
+  def main(args: Array[String]): Unit = {
+    val conf = new SparkConf()
+      .setAppName("context")
+      .setMaster("local[*]")
+    val ssc = new StreamingContext(conf,Seconds(2))
+    val kafkaParams = Map[String, Object](
+      "bootstrap.servers" -> "192.168.1.26:9092",
+      "key.deserializer" -> classOf[StringDeserializer],
+      "value.deserializer" -> classOf[StringDeserializer],
+      "group.id" -> "js_1",
+      "auto.offset.reset" -> "earliest",
+      "enable.auto.commit" -> (false: java.lang.Boolean)
+    )
+
+    val topics = Array("js_log")
+    val stream = KafkaUtils.createDirectStream[String, String](
+      ssc,
+      LocationStrategies.PreferConsistent,
+      ConsumerStrategies.Subscribe[String, String](topics, kafkaParams)
+    )
+
+    stream.foreachRDD(log=>{
+		//调用java程序对url进行解码
+      log.map(x=>(UrlUtil.getURLDecoderString(x.value()))).map(x=>{
+        (x.split("&")(4),1)
+      }).reduceByKey(_+_).foreach(println)
+    })
+
+    ssc.start()
+    ssc.awaitTermination()
+  }
+}
+```
+跑出来的大概流程就是这个样子[转码前和转码后]：
+
+<iframe width="560" height="400" src="http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/url_encoding.mp4" frameborder="0" allowfullscreen></iframe>
