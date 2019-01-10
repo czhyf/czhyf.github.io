@@ -64,4 +64,56 @@ if __name__ == '__main__':
 
 
 ```
-###### [查看Js代码](https://github.com/czhyf/ExceptionTracker)
+#### 对nginx 中的日志进行自动定时切分
+
+##### shell，这块采用shell 编写，对nginx 的日志文件进行切分，存储，定时
+```css
+#!/bin/bash
+LOGS_PATH=/root/software/nginx/logs
+LOGS_PATH_split=/root/software/nginx/split_log
+nginx_sbin=/root/software/nginx/sbin/nginx
+nginx_pid=$LOGS_PATH/nginx.pid
+LOGBAK=$LOGS_PATH_split/$(date -d yesterday +%Y%m%d%H%M).log
+mv $LOGS_PATH/access.log $LOGBAK
+touch $LOGS_PATH/access.log 
+kill -HUP `cat $nginx_pid`  #这块使用-HUB
+echo "切割完成"
+```
+#### 设置定时任务,使用 crontabs
+##### 安装crontabs
+```css
+//安装
+yum install vixie-cron
+yum install crontabs
+
+cron 是linux的内置服务，但它不自动起来，可以用以下的方法启动、关闭这个服务：
+/sbin/service crond start //启动服务
+/sbin/service crond stop //关闭服务
+/sbin/service crond restart //重启服务
+/sbin/service crond reload //重新载入配置
+
+基本格式 :
+*  *　 *　 *　 *　　command
+分　时　日　月　周　 命令
+
+第1列表示分钟1～59 每分钟用*或者 */1表示
+第2列表示小时1～23（0表示0点）
+第3列表示日期1～31
+第4列表示月份1～12
+第5列标识号星期0～6（0表示星期天）
+第6列要运行的命令
+```
+#####  利用crontabs设置定时任务
+```css
+//安装好之后
+
+两步设置: 
+#命令行输入
+crontab -e
+#在出现的vim中输入要执行的命令，每3分钟执行脚本命令
+*/3 * * * * sh  /root/software/nginx/split_log.sh
+```
+##### 查看图片,每隔三分钟生成一个文件
+![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/log_crontab.PNG)
+
+#### [查看Js代码](https://github.com/czhyf/ExceptionTracker)
