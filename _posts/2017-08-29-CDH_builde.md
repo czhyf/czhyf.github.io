@@ -18,7 +18,7 @@ http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos6-cm5.16.1_x86_64.ta
 ```css
 http://archive.cloudera.com/cdh5/parcels/latest/
 ```
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/cdh_choose.png)
+![](http://img.wordboy.cn/CDH/cdh_choose.png)
 #### 数据库的创建
 ```css
 mysql -u root -p123456
@@ -40,7 +40,7 @@ create database oozie DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 cd /opt
 tar -zxvf cloudera-manager-centos6-cm5.16.1_x86_64.tar.gz
 ```
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/CDh1.png)
+![](http://img.wordboy.cn/CDH/CDh1.png)
 接下来下载mysql的驱动包放入到/opt/cm-5.16.1/share/cmf/lib/
 ```css
 网址:http://dev.mysql.com/downloads/connector/j/
@@ -49,20 +49,20 @@ tar -zxvf mysql-conn*.tar.gz
 //移动jar包到文件下
 mv ysql-connector-java-5.1.**-bin.jar /opt/cm-5.12.1/share/cmf/lib/
 ```
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/cdh_conn.png)
+![](http://img.wordboy.cn/CDH/cdh_conn.png)
 初始化cm数据
 
 ```css
 /opt/cm-5.16.1/share/cmf/schema/scm_prepare_database.sh mysql cm -hlocalhost -uroot -p123456 --scm-host localhost scm scm scm
 ```
 这就是初始化成功，如果遇到什么错误，查找就行，mysql的版本5.7.X 既可以
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/cdh_init.PNG)
+![](http://img.wordboy.cn/CDH/cdh_init.PNG)
 然后配置主节点
 ```css
 //打开config.ini
 vim /opt/cm-5.16.1/etc/cloudera-scm-agent/config.ini
 ```
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/cdh_3.png)
+![](http://img.wordboy.cn/CDH/cdh_3.png)
 接下来把agent分发到各个节点
 ```css
 cd /opt
@@ -76,7 +76,7 @@ useradd --system --home=/opt/cm-5.16.1/run/cloudera-scm-server/ --no-create-home
 ```
 ##### Master节点
 将下载好的安装包放到    /opt/cloudera/parcel-repo/
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/CDH_parsles.PNG)
+![](http://img.wordboy.cn/CDH/CDH_parsles.PNG)
 ```css
 //将CDH-5.12.1-1.cdh5.12.1.p0.3-el6.parcel.sha1 去掉后面的1,一定要去掉
 mv CDH-5.12.1-1.cdh5.12.1.p0.3-el6.parcel.sha1 CDH-5.12.1-1.cdh5.12.1.p0.3-el6.parcel.sha
@@ -97,21 +97,21 @@ jps一下，查看是否有main进程，存在，如果存在，则证明启动�
 netstat -apn|grep 7180
 ```
 打开http://masterip:7180 默认账号：admin 密码：admin
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/0.png)
+![](http://img.wordboy.cn/CDH/0.png)
 勾选是（你不勾选也不行啊，不知道这个存在的意义）
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/11754794-44a91b88cb611867.png)
+![](http://img.wordboy.cn/CDH/11754794-44a91b88cb611867.png)
 选择免费的版本
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/11754794-e87db09e74a29e39.png)
+![](http://img.wordboy.cn/CDH/11754794-e87db09e74a29e39.png)
 点击继续
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/11754794-fd9699a955936bb6.png)
+![](http://img.wordboy.cn/CDH/11754794-fd9699a955936bb6.png)
 选择当前的管理的主机，点击继续
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/3.PNG)
+![](http://img.wordboy.cn/CDH/3.PNG)
 点击下一步，然后分配，激活，都是自动的。然后是服务器检查
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/11754794-7246b5379592248b.png)
+![](http://img.wordboy.cn/CDH/11754794-7246b5379592248b.png)
 点击完成，接下来安装服务就可以了。在安装的时候发生几个错误
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/CDH_err.jpg)
+![](http://img.wordboy.cn/CDH/CDH_err.jpg)
 最后根据日志发现是per的错误，
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/CDH_per_err.jpg)
+![](http://img.wordboy.cn/CDH/CDH_per_err.jpg)
 最后安装就解决了
 ```css
 yum -y install perl perl-devel
@@ -126,4 +126,4 @@ org.apache.hadoop.hive.metastore.HiveMetaException: Failed to load driver
 解决
 ```
 最后想安装什么自己决定，我这块安装的了这些服务
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/CDH-end.png)
+![](http://img.wordboy.cn/CDH/CDH-end.png)

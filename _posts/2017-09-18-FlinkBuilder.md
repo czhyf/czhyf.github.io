@@ -24,13 +24,13 @@ cd flink-1.7.1/bin
 ./yarn-session.sh -n 4 -jm 1024m -tm 4096m
 //启动成功后
 ```
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/flink/1.PNG)
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/flink/2.PNG)
+![](http://img.wordboy.cn/flink/1.PNG)
+![](http://img.wordboy.cn/flink/2.PNG)
 ```css
 //提交一个任务
 cd flink-1.7.0/
 ./bin/flink run -m yarn-cluster -yn 4 -yjm 1024m -ytm 4096m ./examples/batch/WordCount.jar
 ```
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/flink/3.PNG)
+![](http://img.wordboy.cn/flink/3.PNG)
 //因为基于yarn的，所以来到yarn界面查看
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/flink/4.PNG)
+![](http://img.wordboy.cn/flink/4.PNG)

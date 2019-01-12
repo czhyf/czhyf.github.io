@@ -8,7 +8,7 @@ tags: CDH
 #### CDH之spark2的安装
 
 就之前我是cdh-5.16.1，那我们添加服务来看一下有没有spark2的安装
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/spark1.png)
+![](http://img.wordboy.cn/CDH/spark1.png)
 没有吧，那我接下就开始让他出现吧
 #### spark2的安装
 ##### spark2的安装包的下载 
@@ -16,12 +16,12 @@ tags: CDH
 ```css
 http://archive.cloudera.com/spark2/csd/
 ```
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/spark2.png)
+![](http://img.wordboy.cn/CDH/spark2.png)
 2，下载spark2的安装包
 ```css
 http://archive.cloudera.com/spark2/parcels/2.2.0/
 ```
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/spark3.png)
+![](http://img.wordboy.cn/CDH/spark3.png)
 ##### 安装步骤
 ###### 1，需要将jar包拷贝csd目录下，并改权限
 ```css
@@ -46,11 +46,11 @@ manifest.json
 ###### 4，通过cm来安装spark2
 CM页面-> 主机 -> Parcel页面可以看到新的spark2的parcel包 就可以看到 spark2.2.0.cloudera4-1.cdh5.13.3.p0.603055
 点击下载->分配->激活
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/spark4.png)
+![](http://img.wordboy.cn/CDH/spark4.png)
 ###### 5，点击群集 添加服务 ,就可以看见spark2了
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/spark5.png)
+![](http://img.wordboy.cn/CDH/spark5.png)
 ###### 6，完成
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/CDH/CDH-end.png)
+![](http://img.wordboy.cn/CDH/CDH-end.png)
 
 
 

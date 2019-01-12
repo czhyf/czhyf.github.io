@@ -57,7 +57,7 @@ cd /root/software/kafka/bin
 ./kafka-console-consumer.sh --topic js_log --bootstrap-server hadoop04:9092 --from-beginning
 ```
 视频：
-<iframe width="560" height="400" src="http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/flume_caiji.mp4" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="400" src="http://img.wordboy.cn/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/flume_caiji.mp4" frameborder="0" allowfullscreen></iframe>
 ##### 既然flume已经采集到kafka了 那么接下来就开始编写sparkStreaming程序来消费数据
 ```css
 //首先idea创建一个maven程序，然后导入依赖
@@ -174,4 +174,4 @@ object KafKaFlume {
 ```
 跑出来的大概流程就是这个样子[转码前和转码后]：
 
-<iframe width="560" height="400" src="http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/url_encoding.mp4" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="400" src="http://img.wordboy.cn/project/spark/js%E5%9F%8B%E7%82%B9%E5%88%86%E6%9E%90/url_encoding.mp4" frameborder="0" allowfullscreen></iframe>

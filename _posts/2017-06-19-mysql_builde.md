@@ -151,7 +151,7 @@ ps -ef | grep mysql
 #拿到默认密码，在/var/log/mysqld.log里，如下：
 cat /var/log/mysqld.log
 ```
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/mysql/mysql_password.png)
+![](http://img.wordboy.cn/mysql/mysql_password.png)
 ```css
 #进入bin目录
 cd /usr/local/mysql/bin
@@ -182,4 +182,4 @@ service mysql stop
 service mysql start
 至此就已经安装成功了.
 ```
-![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/mysql/mysql_end.jpg)
+![](http://img.wordboy.cn/mysql/mysql_end.jpg)
