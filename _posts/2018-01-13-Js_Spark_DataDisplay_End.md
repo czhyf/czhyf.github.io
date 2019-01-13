@@ -8,6 +8,8 @@ tags: spark
 #### flume采集（安装flume，这块就不多做赘述了,安装也只是测试，没用，提供一个[下载链接](http://archive.apache.org/dist/flume/)）
 ##### 首先自定义source  [sink->kafka->sparkstreaming]
 ```css
+#启动kafka服务后台永久启动
+nohup kafka-server-start.sh ../config/server.properties 1>/dev/null 2>&1 &
 #kafka 创建主题
 ./kafka-topics.sh --create --zookeeper 192.168.1.26:2181 --replication-factor 1 --partitions 1  --topic js_log
 #kafka 查看主题
