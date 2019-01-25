@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: 'boss直聘爬取具体信息'
+title: '日志提交系统'
 date: 2018-09-10
 author: 男孩
 tags: python
