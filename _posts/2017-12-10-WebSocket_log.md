@@ -143,3 +143,4 @@ HTML5 定义的 WebSocket 协议，能更好的节省服务器资源和带宽，
 ![](http://mgimg-ali.oss-cn-beijing.aliyuncs.com/project/websocet/ws.png)
 
 速度确实很快的。没问题 比只ajax轮询优秀很多。
+#### [查看代码](https://github.com/czhyf/WebSocket)
