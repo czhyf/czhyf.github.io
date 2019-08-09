@@ -21,6 +21,11 @@ chmod +x shadowsocks.sh
 ![](https://mgimg-ali.oss-cn-beijing.aliyuncs.com/vps/5340981f45b28734ccd9c2253943167.png)
 ##### 手机使用代理可以访问谷歌，速度很快,看图
 ![](https://mgimg-ali.oss-cn-beijing.aliyuncs.com/vps/ca31dff84ef31e29cce2cd9df4665aa.jpg)
+##### 当linux等安装完成之后，会有疑问，如何在windows上连接这个vpn。两种方案
+###### 第一种，自己去git上下载
+https://github.com/shadowsocks
+###### 第二种，用我已经下载好的,如果你们网速不行，就用这个,我已经上传到我阿里云的服务器上
+https://mgimg-ali.oss-cn-beijing.aliyuncs.com/vps/Shadowsocks-4.1.7.1.zip
 ##### 有什么疑问，发邮件就可以。
 up_boy@aliyun.com
 
