@@ -20,7 +20,7 @@ chmod +x shadowsocks.sh
 ##### 成功安装之后 会显示
 ![](https://mgimg-ali.oss-cn-beijing.aliyuncs.com/vps/5340981f45b28734ccd9c2253943167.png)
 ##### 手机使用代理可以访问谷歌，速度很快,看图
-![](https://mgimg-ali.oss-cn-beijing.aliyuncs.com/vps/ca31dff84ef31e29cce2cd9df4665aa.jpg)
+![]()
 ##### 当linux等安装完成之后，会有疑问，如何在windows上连接这个vpn。两种方案
 ###### 第一种，自己去git上下载
 https://github.com/shadowsocks
